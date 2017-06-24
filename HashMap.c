@@ -70,11 +70,14 @@ static MapEntry* getMapEntry(HashMap* map, void* key, bool create) {
       return bin->data[i];
     }
   }
+
+  MapEntry* entry = NULL;
+
   if(create) {
-    MapEntry* entry = newEntryInBin(bin);
+    entry = newEntryInBin(bin);
     entry->key = map->keyCopier(key);
   }
-  return NULL;
+  return entry;
 }
 
 void* getValue(HashMap* map, void* key) {
